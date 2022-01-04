@@ -1,13 +1,16 @@
 class Question
 
-def new_question
-  num1 = rand(1..20)
-  num2 = rand(1..20)
-  @answer = num1 + num2
-  "What does #{num1} plus #{num2} equal?"
+def initialize
+  @number1 = rand(1..20)
+  @number2 = rand(1..20)
+  @answer = @number1 + @number2
 end
 
-def is_correct?(answer)
+def to_s
+  "What does #{@number1} plus #{@number2} equal?"
+end
+
+def check?(answer)
   @answer == answer
 end
 

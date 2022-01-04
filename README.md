@@ -1,3 +1,7 @@
+# Result
+
+![screenshot](./screenshots/result.png)
+
 # **Planning phase**
 
 ## **Goal**
@@ -20,33 +24,41 @@ Create a 2-Player math game where:
 
 ### **Player**
 
-- Sate: name, lives
-- Behaviour: lose_a_life
+- State: `name`, `lives`
+- Behaviour: `wrong`, `lost?`, `ask`
 
 ### **Question**
 
-- Sate: correct answer
-- Behaviour: is_correct?
+- State: `number1`, `number2`, `answer`
+- Behaviour: `to_s`, `check?`
 
 ### **Game**
 
-- Sate: player1, player2, current_player
-- Behaviour: is_correct?
+- State: `player1`, `player2`
+- Behaviour: `start`, `new_turn`, `check_lives`, `current_score`, `winner`
 
 ```
 What information is relevant to each class?
--> Player: keeping track of players' lives
--> Question: generating a new question
--> Game: initializing 2 players and questions
+-> Player: keeping track of players' lives/names
+-> Question: generate a new question to ask
+-> Game: initialize and start the game, then loop till game over
+```
 
+```
 What will they need in order to be initialized?
-> Game -> Players -> Question
+-> Player: player name
+-> Question: n/a
+-> Game: user input for names
+```
 
+```
 What public methods will be defined on them?
--> Player: wrong (to subtract a life for caller player)
+-> Player:
+  ask (to ask the player a new question),
+  lost? (checks if player has lost),
 -> Question:
-- new_question (to generate a new question/answer)
-- is_correct? (to check whether user input is correct)
+  to_s (to output the question in string format) - override
+  check? (to check whether user's answer is correct)
 -> Game: start (to start the game)
 ```
 
@@ -54,12 +66,10 @@ What public methods will be defined on them?
 Which class will contain the game loop (where each instance of the loop is the other players turn)?
 -> Game class
 
-Which class should manage who the current_player is?
--> Game class (can also create a separate class such as Turn or Current)
-
 Which class(es) will contain user I/O and which will not have any?
--> Player/Question: No I/O
--> Game: Has user I/O
+-> Question: No Input, outputs the question
+-> Player: Has user input for player's answer to the question, has output for whether or not the answer is correct
+-> Game: Has user input for player name, has output for game phases and scores + ending winner
 ```
 
-> The better approach would have the I/O in the Question initializer, and having the Game class instantiate a new Question object on every iteration
+> Another approach would be to keep track of current user and alternate between players every round iteration, where every iteration is a new question rather than asking 2 questions (1 question each) on every iteration (round). This way we would instantiate the question in Game class instead of Player class.
