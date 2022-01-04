@@ -1,8 +1,10 @@
-# Result
+<h1 align="center"> Result </h1>
 
-![screenshot](./screenshots/result.png)
+<p align="center"> 
+<img src="./screenshots/result.png" alt="screenshot">
+</p>
 
-# **Planning phase**
+<h1 align="center"> Planning phase </h1>
 
 ## **Goal**
 
@@ -25,7 +27,7 @@ Create a 2-Player math game where:
 ### **Player**
 
 - State: `name`, `lives`
-- Behaviour: `wrong`, `lost?`, `ask`
+- Behaviour: `punish`, `lost?`, `ask_and_lost?`
 
 ### **Question**
 
@@ -35,12 +37,12 @@ Create a 2-Player math game where:
 ### **Game**
 
 - State: `player1`, `player2`
-- Behaviour: `start`, `new_turn`, `check_lives`, `current_score`, `winner`
+- Behaviour: `start`, `new_turn`, `score`, `winner`
 
 ```
 What information is relevant to each class?
 -> Player: keeping track of players' lives/names
--> Question: generate a new question to ask
+-> Question: generate a new question to ask player
 -> Game: initialize and start the game, then loop till game over
 ```
 
@@ -54,8 +56,8 @@ What will they need in order to be initialized?
 ```
 What public methods will be defined on them?
 -> Player:
-  ask (to ask the player a new question),
-  lost? (checks if player has lost),
+  ask_and_lost? (ask the player a new question and return back whether player has lost or not),
+  lost? (checks if player has lost -> can be skipped),
 -> Question:
   to_s (to output the question in string format) - override
   check? (to check whether user's answer is correct)

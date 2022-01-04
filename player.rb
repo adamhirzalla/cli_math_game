@@ -11,7 +11,7 @@ class Player
     @lives == 0
   end
 
-  def ask
+  def ask_and_lost?
     question = Question.new
     puts "\n#{name}'s Turn! (Lives: #{lives}/3)\n\t-> #{question}"
     answer = gets.chomp.to_i
@@ -19,13 +19,14 @@ class Player
       puts "-> YES! That was correct! Good Job #{name}!"
     else
       puts "-> NOPE! That was incorrect! Sorry, #{name}!"
-      wrong
+      punish
+      lost?
     end
   end
 
   private
 
-  def wrong
+  def punish
     @lives -= 1
   end
   

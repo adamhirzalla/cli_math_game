@@ -18,24 +18,14 @@ class Game
   private
 
   def new_turn
-    @player1.ask
-    check_lives
-    @player2.ask
-    check_lives
-    current_score
+    winner(@player2) if @player1.ask_and_lost?
+    winner(@player1) if @player2.ask_and_lost?
+    score
     puts "\n-------- NEW TURN --------"
     new_turn
   end
 
-  def check_lives
-    if @player1.lost?
-      winner(@player2)
-    elsif @player2.lost?
-      winner(@player1)
-    end
-  end
-
-  def current_score
+  def score
     puts "\nScore -> #{@player1.name}: #{@player1.lives}/3 vs #{@player2.name}: #{@player2.lives}/3"
   end
 
