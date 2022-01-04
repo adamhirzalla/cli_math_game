@@ -25,7 +25,7 @@ class Player
 
   private
 
-   def wrong
+  def wrong
     @lives -= 1
   end
   
