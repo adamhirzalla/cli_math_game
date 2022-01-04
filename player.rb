@@ -15,12 +15,12 @@ class Player
     question = Question.new
     puts "\n#{name}'s Turn! (Lives: #{lives}/3)\n\t-> #{question}"
     answer = gets.chomp.to_i
-   if question.check?(answer)
-    puts "-> YES! That was correct! Good Job #{name}!"
-   else
-    puts "-> NOPE! That was incorrect! Sorry, #{name}!"
-    wrong
-   end
+    if question.check?(answer)
+      puts "-> YES! That was correct! Good Job #{name}!"
+    else
+      puts "-> NOPE! That was incorrect! Sorry, #{name}!"
+      wrong
+    end
   end
 
   private
